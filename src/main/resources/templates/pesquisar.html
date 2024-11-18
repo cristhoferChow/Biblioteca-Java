@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>
+            BIBLIOTECA - PESQUISAR
+        </title>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a th:href="@{/}">SISTEMA BIBLIOTECA</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a th:href="@{/cadastro}">Cadastrar Livro</a></li>
+                    <li><a th:href="@{/atualizar}">Atualizar Livro</a></li>
+                    <li><a th:href="@{/excluir}">Excluir Livro</a></li>
+                    <li><a th:href="@{/pesquisar}">Pesquisar Livro</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <table border="1">
+            <thead>
+              <tr>
+                <th>Código do Livro</th>
+                <th>Nome</th>
+                <th>Autor</th>
+                <th>Ano</th>
+                <th>Editora</th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="livro : ${livros}">
+                <td th:text="${livro.id}"></td>
+                <td th:text="${livro.nome}"></td>
+                <td th:text="${livro.autor}"></td>
+                <td th:text="${livro.ano}"></td>
+                <td th:text="${livro.editora}"></td>
+                <td>
+                    <!-- Link para atualizar -->
+                    <a th:href="@{/atualizar/{id}(id=${livro.id})}">Editar</a>
+
+                    <!-- Link para excluir -->
+                    <a th:href="@{/excluir/{id}(id=${livro.id})}" >Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+
+        <a th:href="@{/}">Voltar para Inicio</a>
+    </body>
+</html>

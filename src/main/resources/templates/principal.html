@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>
+            BIBLIOTECA - PRINCIPAL
+        </title>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a th:href="@{/}">SISTEMA BIBLIOTECA</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a th:href="@{/cadastro}">Cadastrar Livro</a></li>
+                    <li><a th:href="@{/atualizar}">Atualizar Livro</a></li>
+                    <li><a th:href="@{/excluir}">Excluir Livro</a></li>
+                    <li><a th:href="@{/pesquisar}">PesquisarLivro</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section>
+            <div>
+                <a th:href="@{cadastro}">
+                    Adicionar livro
+                </a>
+            </div>
+            <div>
+                <a th:href="@{pesqusiar}">
+                    Pesquisar livro
+                </a>
+            </div>
+        </section>
+
+    </body>
+</html>
