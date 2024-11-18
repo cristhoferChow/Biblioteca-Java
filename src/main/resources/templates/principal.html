@@ -7,27 +7,23 @@
     </head>
     <body>
         <header>
-            <h1>
-                <a th:href="@{/}">SISTEMA BIBLIOTECA</a>
-            </h1>
+            <h1> <a th:href="@{/}">SISTEMA BIBLIOTECA</a> </h1>
             <nav>
                 <ul>
                     <li><a th:href="@{/cadastro}">Cadastrar Livro</a></li>
-                    <li><a th:href="@{/atualizar}">Atualizar Livro</a></li>
-                    <li><a th:href="@{/excluir}">Excluir Livro</a></li>
-                    <li><a th:href="@{/pesquisar}">PesquisarLivro</a></li>
+                    <li><a th:href="@{/livros}">PesquisarLivro</a></li>
                 </ul>
             </nav>
         </header>
 
-        <section>
+        <section> 
             <div>
-                <a th:href="@{cadastro}">
+                <a th:href="@{/cadastro}">
                     Adicionar livro
                 </a>
             </div>
             <div>
-                <a th:href="@{pesqusiar}">
+                <a th:href="@{/livros}">
                     Pesquisar livro
                 </a>
             </div>

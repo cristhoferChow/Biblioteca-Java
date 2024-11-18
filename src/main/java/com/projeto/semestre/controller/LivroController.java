@@ -3,8 +3,11 @@ package com.projeto.semestre.controller;
 
 import com.projeto.semestre.model.Livro;
 import com.projeto.semestre.model.LivroService;
+import com.projeto.semestre.model.Tool;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -28,63 +31,60 @@ public class LivroController {
     }
 
     // Método para listar livros
-    @GetMapping("/pesquisar")
-    public String listaLivro(Model model) {
+    @GetMapping("/livros")
+    public String livros(Model model) {
         // Usando ApplicationContext para obter o LivroService
-        LivroService livroService = context.getBean(LivroService.class);
+        LivroService ls = context.getBean(LivroService.class);
         
         // Obtém a lista de livros
-        List<Livro> livros = livroService.procurarLivros();
-        model.addAttribute("livro", livros);
-        return "pesquisar"; // Template para exibição
+        List<Map<String, Object>> lista = ls.procurarLivros();
+        List<Livro> listaLivro = new ArrayList<Livro>();
+        for(Map<String, Object> cadastro : lista){
+            listaLivro.add(Tool.converterLivro(cadastro));
+        }
+        model.addAttribute("livros", listaLivro);
+        return "livros"; // Template para exibição
     }
 
     // Método para excluir livro
-    @GetMapping("/excluir/{id}")
+    @PostMapping("/excluir/{id}")
     public String deletarLivro(@PathVariable int id) {
         LivroService livroService = context.getBean(LivroService.class);
         livroService.deletarLivro(id);
-        return "redirect:/pesquisar"; // Redirecionando para a lista de livros após a exclusão
+        return "redirect:/livros"; // Redirecionando para a lista de livros após a exclusão
     }
 
     // Método para atualizar livro (GET)
     @GetMapping("/atualizar/{id}")
     public String atualizarLivro(@PathVariable int id, Model model) {
         LivroService livroService = context.getBean(LivroService.class);
-        
         // Buscando o livro pelo ID
-        Livro livro = livroService.procurarLivros().stream()
-                                  .filter(l -> l.getId() == id)
-                                  .findFirst()
-                                  .orElse(null);
-        
-        if (livro != null) {
+        Livro livro = livroService.procurarLivro(id);
+            model.addAttribute("id", id);
             model.addAttribute("livro", livro);
-            return "atualizar"; // Template para atualizar o livro
-        }
-        return "redirect:/pesquisar"; // Caso não encontre o livro
+        return "atualizar"; // Caso não encontre o livro
     }
 
     // Método para atualizar livro (POST)
-    @PostMapping("/atualizar")
-    public String atualizarLivro(@ModelAttribute Livro livro) {
+    @PostMapping("/atualizar/{id}")
+    public String atualizarLivro(@PathVariable int id, @ModelAttribute Livro livro) {
         LivroService livroService = context.getBean(LivroService.class);
-        livroService.atualizarLivro(livro); // Atualiza o livro no serviço
-        return "redirect:/pesquisar"; // Redireciona para a lista de livros
+        livroService.atualizarLivro(id, livro); // Atualiza o livro no serviço
+        return "redirect:/livros"; // Redireciona para a lista de livros
     }
 
     // Método para cadastro de livro (GET)
     @GetMapping("/cadastro")
     public String cadastro(Model model) {
-        model.addAttribute("livro", new Livro()); // Cria um novo objeto Livro
+        model.addAttribute("livro", new Livro("", 0, "", "")); // Cria um novo objeto Livro
         return "cadastro"; // Template para cadastrar o livro
     }
 
     // Método para cadastro de livro (POST)
     @PostMapping("/cadastro")
-    public String sucesso(@ModelAttribute Livro livro) {
+    public String cadastrar( Model model, @ModelAttribute Livro li) {
         LivroService livroService = context.getBean(LivroService.class);
-        livroService.inserirLivro(livro); // Insere o livro no serviço
+        livroService.inserirLivro(li); // Insere o livro no serviço
         return "sucesso"; // Template de sucesso após o cadastro
     }
 }

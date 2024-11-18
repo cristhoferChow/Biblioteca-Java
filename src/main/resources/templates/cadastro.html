@@ -6,9 +6,7 @@
 </head>
 <body>
 	<header>
-		<h1>
-			<a th:href="@{/}">SISTEMA BIBLIOTECA</a>
-		</h1>
+		<h1> <a th:href="@{/}">SISTEMA BIBLIOTECA</a> </h1>
 		<nav>
 			<ul>
 				<li><a th:href="@{/cadastro}">Cadastrar Livro</a></li>
@@ -22,19 +20,15 @@
 	<h2>Cadastrar livro</h2>
 
     <form th:action="@{/cadastro}" method="post">
-        <label for="nome">Título:</label>
-        <input type="text" id="nome" name="nome" required>
+        Título:<input type="text" id="nome" name="nome" required>
         <br>
-        <label for="autor">Autor:</label>
-        <input type="text" id="autor" name="autor" required>
+        Autor:<input type="text" id="autor" name="autor" required>
         <br>
-        <label for="ano">Ano:</label>
-        <input type="number" id="ano" name="ano" required>
+        Ano:<input type="number" id="ano" name="ano" required>
         <br>
-        <label for="editora">Editora:</label>
-        <input type="text" id="editora" th:value="${livro.editora}" name="editora" required>
+        Editora:<input type="text" id="editora" name="editora" required>
         <br>
-        <button type="submit">Cadastrar</button>
+        <button type="submit" value="Cadastrar">Cadastrar</button>
 
 	<a th:href="@{/}">Voltar para Inicio</a>
 

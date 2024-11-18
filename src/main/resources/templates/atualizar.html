@@ -7,36 +7,24 @@
     </head>
     <body>
         <header>
-            <h1>
-                <a th:href="@{/}">SISTEMA BIBLIOTECA</a>
-            </h1>
+            <h1> <a th:href="@{/}">SISTEMA BIBLIOTECA</a> </h1>
             <nav>
                 <ul>
                     <li><a th:href="@{/cadastro}">Cadastrar Livro</a></li>
-                    <li><a th:href="@{/atualizar}">Atualizar Livro</a></li>
-                    <li><a th:href="@{/excluir}">Excluir Livro</a></li>
-                    <li><a th:href="@{/pesquisar}">PesquisarLivro</a></li>
+                    <li><a th:href="@{/livros}">PesquisarLivro</a></li>
                 </ul>
             </nav>
         </header>
 
         <h2>Atualizar Livro</h2>
 
-        <form th:action="@{/atualizar}" method="post">
-            <input type="hidden" th:value="${livro.id}" name="id">
-            <label for="nome">Título:</label>
-            <input type="text" id="nome" th:value="${livro.nome}" name="nome" required>
+        <form th:action="@{'/atualizar/'+${id}}" th:object="${livro}" method="post">
+            Título: <input type="text" id="nome" name="nome" th:field="*{nome}"><br>
+            Ano:<input type="number" id="ano" name="ano" th:field="*{ano}"><br>
+            Autor:<input type="text" id="autor" name="autor" th:field="*{autor}" ><br>
+            Editora:<input type="text" id="editora" name="editora" th:field="*{editora}">
             <br>
-            <label for="autor">Autor:</label>
-            <input type="text" id="autor" th:value="${livro.autor}" name="autor" required>
-            <br>
-            <label for="ano">Ano:</label>
-            <input type="number" id="ano" th:value="${livro.ano}" name="ano" required>
-            <br>
-            <label for="editora">Editora:</label>
-            <input type="text" id="editora" th:value="${livro.editora}" name="editora" required>
-            <br>
-            <button type="submit">Atualizar</button>
+            <button type="submit" value="Aualizar" name="atualizar">Atualizar</button>
         </form>
         <a th:href="@{/}">Voltar para Inicio</a>
     </body>

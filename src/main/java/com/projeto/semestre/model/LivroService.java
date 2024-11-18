@@ -1,6 +1,7 @@
 package com.projeto.semestre.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,16 @@ public class LivroService {
         this.ldao.inserirLivro(li);
     }
 
-    public List<Livro> procurarLivros(){
+    public List<Map<String, Object>> procurarLivros(){
         return ldao.procurarLivros();
     }
 
-    public void atualizarLivro(Livro li){
-        ldao.atualizarLivro(li);
+    public Livro procurarLivro(int id){
+        return ldao.procurarLivro(id);
+    }
+
+    public void atualizarLivro(int id, Livro li){
+        ldao.atualizarLivro(id, li);
     }
 
     public void deletarLivro(int id){
