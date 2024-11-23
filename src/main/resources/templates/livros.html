@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>
+            BIBLIOTECA - LIVROS
+        </title>
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    </head>
+    <body>
+        <header>
+            <h1> 
+                <a th:href="@{/}" class="link-header">SISTEMA BIBLIOTECA</a> 
+            </h1>
+        </header>
+
+        <table border="1">
+            <thead>
+              <tr>
+                <th>Código do Livro</th>
+                <th>Nome</th>
+                <th>Ano</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="livro : ${livros}">
+                <td th:text="${livro.id}"></td>
+                <td th:text="${livro.nome}"></td>
+                <td th:text="${livro.ano}"></td>
+                <td th:text="${livro.autor}"></td>
+                <td th:text="${livro.editora}"></td>
+                <td id="td-opcao">
+                    <a th:href="@{'/atualizar/'+${livro.id}}" id="btn-editar">Editar</a>
+                    <form th:action="@{'/excluir/' + ${livro.id}}" method="post" class="form-marrom">
+                        <button type="submit" value="Apagar" name="Apagar" id="btn-deletar">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>BIBLIOTECA - CADASTRO</title>
+	<link rel="stylesheet" type="text/css" href="/css/main.css	"/>
+</head>
+<body>
+	<header>
+		<h1> 
+			<a th:href="@{/}" class="link-header">SISTEMA BIBLIOTECA</a> 
+		</h1>
+	</header>
+
+	<section class="section-marrom">
+
+		<h2 class="h2-marrom">Cadastrar livro</h2>
+	
+		<form th:action="@{/cadastro}" method="post" class="form-marrom">
+			<div class="div-row">
+				<label name="nome" class="label-form">Título</label>
+				<input type="text" id="nome" name="nome" class="input" required>
+				<br>
+				<label name="ano" class="label-form">Ano</label>
+				<input type="number" id="ano" name="ano" class="input" required>
+			</div>
+			<br>
+			<div class="div-row">
+				<label name="autor" class="label-form">Autor</label>
+				<input type="text" id="autor" name="autor" class="input" required>
+				<br>
+				<label name="editora" class="label-form">Editora</label>
+				<input type="text" id="editora" name="editora" class="input" required>
+			</div>
+			<br>
+			<button type="submit" value="Cadastrar" class="confirmar">Cadastrar</button>
+
+			<a th:href="@{/}" class="cancelar">Cancelar</a>
+		</form>
+	</section>
+
+</body>
+</html>
