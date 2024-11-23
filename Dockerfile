@@ -12,3 +12,4 @@ FROM openjdk:17-jdk-alpine
 
     RUN ls -l ./target
 
+    CMD ["java", "-jar", "target/projeto-0.0.1-SNAPSHOT.war"] 
