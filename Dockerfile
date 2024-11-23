@@ -12,4 +12,3 @@ FROM openjdk:17-jdk-alpine
 
     RUN ls -l ./target
 
-	CMD ["java", "-jar", "target/cadastro-0.0.1-SNAPSHOT.war"] 
