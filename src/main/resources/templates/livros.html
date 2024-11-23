@@ -4,16 +4,13 @@
         <title>
             BIBLIOTECA - LIVROS
         </title>
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
     </head>
     <body>
         <header>
-            <h1> <a th:href="@{/}">SISTEMA BIBLIOTECA</a> </h1>
-            <nav>
-                <ul>
-                    <li><a th:href="@{/cadastro}">Cadastrar Livro</a></li>
-                    <li><a th:href="@{/atualizar}">Atualizar Livro</a></li>
-                </ul>
-            </nav>
+            <h1> 
+                <a th:href="@{/}" class="link-header">SISTEMA BIBLIOTECA</a> 
+            </h1>
         </header>
 
         <table border="1">
@@ -24,7 +21,7 @@
                 <th>Ano</th>
                 <th>Autor</th>
                 <th>Editora</th>
-                <th>Options</th>
+                <th>Opções</th>
               </tr>
             </thead>
             <tbody>
@@ -34,18 +31,14 @@
                 <td th:text="${livro.ano}"></td>
                 <td th:text="${livro.autor}"></td>
                 <td th:text="${livro.editora}"></td>
-                <td>
-                    <a th:href="@{'/atualizar/'+${livro.id}}">Editar</a>
-                </td>
-                <td>
-                    <form th:action="@{'/excluir/' + ${livro.id}}" method="post">
-                        <input type="submit" value="Apagar">
+                <td id="td-opcao">
+                    <a th:href="@{'/atualizar/'+${livro.id}}" id="btn-editar">Editar</a>
+                    <form th:action="@{'/excluir/' + ${livro.id}}" method="post" class="form-marrom">
+                        <button type="submit" value="Apagar" name="Apagar" id="btn-deletar">Deletar</button>
                     </form>
                 </td>
             </tr>
             </tbody>
           </table>
-
-        <a th:href="@{/}">Voltar para Inicio</a>
     </body>
 </html>

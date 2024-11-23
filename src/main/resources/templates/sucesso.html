@@ -4,13 +4,24 @@
         <title>
             BIBLIOTECA - SUCESSO
         </title>
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
     </head>
     <body>
 
-        <h1>
-            Sucesso!
-        </h1>
+        <header>
+            <h1> 
+                <a th:href="@{/}" class="link-header">SISTEMA BIBLIOTECA</a> 
+            </h1>
+        </header>
+
+        <section id="section-sucesso" class="section-verde">
+            <h2 class="h2-verde">
+                Sucesso!
+            </h2>
+
+            <a th:href="@{/}" id="a-sucesso" class="cancelar">Voltar para Inicio</a>
+
+        </section>
         
-        <a th:href="@{/}">Voltar para Inicio</a>
     </body>
 </html>
