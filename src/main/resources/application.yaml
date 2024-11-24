@@ -19,3 +19,4 @@ spring:
             schema-locations: classpath:/schema-postgresql.sql
             mode: always
             platform: postgres
+
